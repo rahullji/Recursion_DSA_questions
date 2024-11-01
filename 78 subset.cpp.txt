@@ -1,0 +1,28 @@
+
+#include <iostream>
+#include<vector>
+using namespace std;
+void subsets(vector<int> nums, vector<int> output, vector<vector<int>>& ans, int i) {
+    if (i >= nums.size()) {
+        ans.push_back(output);
+        return;
+    }
+    output.push_back(nums[i]);
+    subsets(nums, output, ans, i+1);
+    output.pop_back();
+    subsets(nums, output, ans, i + 1);
+}
+int main()
+{
+    vector<int> vc = { 1,2,3 };
+    vector<int> output;
+    vector<vector<int>> ans;
+    subsets(vc, output, ans, 0);
+
+    for (int i = 0; i < ans.size(); i++) {
+        for (int j = 0; j < ans[i].size(); j++) {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
